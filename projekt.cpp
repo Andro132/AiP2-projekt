@@ -28,6 +28,31 @@ void ispis(int polje[][12])
     }
 }
 
+void ispis(int polje[][12])
+{
+    for (int i = 0; i < 9; i++) // ispis polja
+    {
+        for (int j = 0; j < 12; j++)
+        {
+            if (polje[i][j] == 0)
+                printf("  ");
+            else if (polje[i][j] == 1)
+                printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
+            else if (polje[i][j] == 2)
+                printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
+            else if (polje[i][j] == 3)
+                printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
+            else if (polje[i][j] == 4)
+                printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
+            else if (polje[i][j] == 5)
+                printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
+            else if (polje[i][j] == 6)
+                printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
+        }
+        printf("\n");
+    }
+}
+
 int main()
 {
     char potez;
@@ -51,11 +76,17 @@ int main()
                 polje[i][j] = 6;
         }
     }
+<<<<<<< HEAD
     cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku ili slovo 'p' kako bi preslozili kocku\n\n"
          << endl;
     cout << "Zelite li zapoceti igru sa slozenom ili pomijesanom kockom?\nZa slozenu upisite 1 a za pomijesanu upisite 2\n"
          << endl;
     cin >> menu;
+=======
+    printf("Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku ili slovo 'p' kako bi preslozili kocku\n\n");
+    printf("Zelite li zapoceti igru sa slozenom ili pomijesanom kockom?\nZa slozenu upisite 1 a za pomijesanu upisite 2\n");
+    scanf("%d", &menu);
+>>>>>>> c76186ba68b3c03ffa367597ddd0d50a81925be4
     if (menu == 1)
         ispis(polje);
     else
@@ -155,7 +186,11 @@ int main()
     }
     while (1)
     {
+<<<<<<< HEAD
         cin >> potez;
+=======
+        scanf("%c", &potez);
+>>>>>>> c76186ba68b3c03ffa367597ddd0d50a81925be4
         if (potez == 'f')
         {
             cout << endl;
