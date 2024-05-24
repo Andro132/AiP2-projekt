@@ -1,6 +1,31 @@
-#include <stdio.h>
+#include <iostream>
 #include <stdlib.h>
 #include <time.h>
+
+void ispis(int polje[][12])
+{
+    for (int i = 0; i < 9; i++) // ispis polja
+    {
+        for (int j = 0; j < 12; j++)
+        {
+            if (polje[i][j] == 0)
+                printf("  ");
+            else if (polje[i][j] == 1)
+                printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
+            else if (polje[i][j] == 2)
+                printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
+            else if (polje[i][j] == 3)
+                printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
+            else if (polje[i][j] == 4)
+                printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
+            else if (polje[i][j] == 5)
+                printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
+            else if (polje[i][j] == 6)
+                printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
+        }
+        printf("\n");
+    }
+}
 
 int main()
 {
@@ -8,7 +33,6 @@ int main()
     int t[3] = {0}, t2[3] = {0};
     int polje[9][12] = {0}, menu; // deklaracija polja
     for (int i = 0; i < 9; i++)   // inicijalizacija polja
-
     {
         for (int j = 0; j < 12; j++)
         {
@@ -26,71 +50,13 @@ int main()
                 polje[i][j] = 6;
         }
     }
-
     printf("Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku ili slovo 'p' kako bi preslozili kocku\n\n");
-
     printf("Zelite li zapoceti igru sa slozenom ili pomijesanom kockom?\nZa slozenu upisite 1 a za pomijesanu upisite 2\n");
     scanf("%d", &menu);
-
     if (menu == 1)
-    {
-        for (int i = 0; i < 9; i++) // inicijalizacija polja
-
-        {
-            for (int j = 0; j < 12; j++)
-            {
-                if (j > 2 && j < 6 && i < 3)
-                    polje[i][j] = 2;
-                else if (j < 3 && i > 2 && i < 6)
-                    polje[i][j] = 1;
-                else if (j > 2 && j < 6 && i > 2 && i < 6)
-                    polje[i][j] = 3;
-                else if (j > 2 && j < 6 && i > 5)
-                    polje[i][j] = 4;
-                else if (j > 5 && j < 9 && i > 2 && i < 6)
-                    polje[i][j] = 5;
-                else if (j > 8 && i > 2 && i < 6)
-                    polje[i][j] = 6;
-            }
-        }
-
-        for (int i = 0; i < 9; i++) // ispis polja
-        {
-            for (int j = 0; j < 12; j++)
-            {
-                if (polje[i][j] == 0)
-                    printf("  ");
-                else if (polje[i][j] == 1)
-                {
-                    printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                }
-                else if (polje[i][j] == 2)
-                {
-                    printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                }
-                else if (polje[i][j] == 3)
-                {
-                    printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                }
-                else if (polje[i][j] == 4)
-                {
-                    printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                }
-                else if (polje[i][j] == 5)
-                {
-                    printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                }
-                else if (polje[i][j] == 6)
-                {
-                    printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                }
-            }
-            printf("\n");
-        }
-    }
+        ispis(polje);
     else
     {
-
         srand(time(0));
         int izvuceni[20], ponavlja;
         for (int i = 0; i < 20; i++)
@@ -182,45 +148,11 @@ int main()
                 }
             }
         }
-        for (int i = 0; i < 9; i++) // ispis polja
-        {
-            for (int j = 0; j < 12; j++)
-            {
-                if (polje[i][j] == 0)
-                    printf("  ");
-                else if (polje[i][j] == 1)
-                {
-                    printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                }
-                else if (polje[i][j] == 2)
-                {
-                    printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                }
-                else if (polje[i][j] == 3)
-                {
-                    printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                }
-                else if (polje[i][j] == 4)
-                {
-                    printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                }
-                else if (polje[i][j] == 5)
-                {
-                    printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                }
-                else if (polje[i][j] == 6)
-                {
-                    printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                }
-            }
-            printf("\n");
-        }
+        ispis(polje);
     }
-
     while (1)
     {
         scanf("%c", &potez);
-
         if (potez == 'f')
         {
             printf("\n");
@@ -236,41 +168,8 @@ int main()
                 polje[i + 3][2] = t[i];
                 polje[i + 3][6] = t2[i];
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
-
         if (potez == 'r')
         {
             printf("\n");
@@ -286,39 +185,7 @@ int main()
                 polje[i][5] = t2[i];
                 polje[i + 3][9] = t[i];
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
 
         if (potez == 'u')
@@ -332,39 +199,7 @@ int main()
                 polje[3][i] = polje[3][i + 9];
                 polje[3][i + 9] = t[i];
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
 
         if (potez == 'b')
@@ -382,39 +217,7 @@ int main()
                 polje[8][i + 3] = t2[i];
                 polje[0][i + 3] = t[i];
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
 
         if (potez == 'l')
@@ -432,39 +235,7 @@ int main()
                 polje[i + 6][3] = t2[i];
                 polje[i + 3][11] = t[i];
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
 
         if (potez == 'd')
@@ -478,39 +249,7 @@ int main()
                 polje[5][i + 6] = polje[5][i + 9];
                 polje[5][i + 9] = t[i];
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
 
         if (potez == 'F')
@@ -528,39 +267,7 @@ int main()
                 polje[2][i + 3] = t[i];
                 polje[6][i + 3] = t2[i];
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
 
         else if (potez == 'R')
@@ -578,39 +285,7 @@ int main()
                 polje[i + 6][5] = t2[i];
                 polje[i + 3][9] = t[i];
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
         else if (potez == 'U')
         {
@@ -623,39 +298,7 @@ int main()
                 polje[3][i + 3] = polje[3][i + 6];
                 polje[3][i + 6] = t[i];
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
         else if (potez == 'B')
         {
@@ -672,39 +315,7 @@ int main()
                 polje[i + 3][0] = t[i];
                 polje[i + 3][8] = t2[i];
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
         else if (potez == 'L')
         {
@@ -721,39 +332,7 @@ int main()
                 polje[i][3] = t2[i];
                 polje[i + 3][11] = t[1];
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
         else if (potez == 'D')
         {
@@ -766,39 +345,7 @@ int main()
                 polje[5][i + 3] = polje[5][i];
                 polje[5][i] = t[i];
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
         else if (potez == 'o')
         {
@@ -821,39 +368,7 @@ int main()
                         polje[i][j] = 6;
                 }
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
         else if (potez == 'p')
         {
@@ -949,39 +464,7 @@ int main()
                     }
                 }
             }
-            for (int i = 0; i < 9; i++) // ispis polja
-            {
-                for (int j = 0; j < 12; j++)
-                {
-                    if (polje[i][j] == 0)
-                        printf("  ");
-                    else if (polje[i][j] == 1)
-                    {
-                        printf(" \033[38;5;208m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 2)
-                    {
-                        printf(" \033[1;37m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 3)
-                    {
-                        printf(" \033[1;32m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 4)
-                    {
-                        printf(" \033[38;5;226m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 5)
-                    {
-                        printf(" \033[1;31m\u25A0\033[0m", polje[i][j]);
-                    }
-                    else if (polje[i][j] == 6)
-                    {
-                        printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
-                    }
-                }
-                printf("\n");
-            }
+            ispis(polje);
         }
         for (int i = 0; i < 3; i++)
         {
