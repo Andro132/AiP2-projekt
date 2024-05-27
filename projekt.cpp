@@ -51,9 +51,11 @@ int main()
                 polje[i][j] = 6;
         }
     }
-    printf("Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku ili slovo 'p' kako bi preslozili kocku\n\n");
-    printf("Zelite li zapoceti igru sa slozenom ili pomijesanom kockom?\nZa slozenu upisite 1 a za pomijesanu upisite 2\n");
-    scanf("%d", &menu);
+    cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku ili slovo 'p' kako bi preslozili kocku\n\n"
+         << endl;
+    cout << "Zelite li zapoceti igru sa slozenom ili pomijesanom kockom?\nZa slozenu upisite 1 a za pomijesanu upisite 2\n"
+         << endl;
+    cin >> menu;
     if (menu == 1)
         ispis(polje);
     else
@@ -153,7 +155,7 @@ int main()
     }
     while (1)
     {
-        scanf("%c", &potez);
+        cin >> potez;
         if (potez == 'f')
         {
             cout << "\n";
@@ -475,4 +477,3 @@ int main()
     }
     return 0;
 }
-// dosli smo do 1000!
