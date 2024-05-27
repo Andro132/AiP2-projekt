@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+using namespace std;
 
 void ispis(int polje[][12])
 {
@@ -23,7 +24,7 @@ void ispis(int polje[][12])
             else if (polje[i][j] == 6)
                 printf(" \033[1;34m\u25A0\033[0m", polje[i][j]);
         }
-        printf("\n");
+        cout << "\n";
     }
 }
 
@@ -155,7 +156,7 @@ int main()
         scanf("%c", &potez);
         if (potez == 'f')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 3; i++)
             {
                 t[i] = polje[2][5 - i];
@@ -172,7 +173,7 @@ int main()
         }
         if (potez == 'r')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 3; i++)
             {
                 t[i] = polje[8 - i][5];
@@ -190,7 +191,7 @@ int main()
 
         if (potez == 'u')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 3; i++)
             {
                 t[i] = polje[3][i + 6];
@@ -204,7 +205,7 @@ int main()
 
         if (potez == 'b')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 3; i++)
             {
                 t[i] = polje[5 - i][0];
@@ -222,7 +223,7 @@ int main()
 
         if (potez == 'l')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 3; i++)
             {
                 t[i] = polje[2 - i][3];
@@ -240,7 +241,7 @@ int main()
 
         if (potez == 'd')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 3; i++)
             {
                 t[i] = polje[5][i];
@@ -254,7 +255,7 @@ int main()
 
         if (potez == 'F')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 3; i++)
             {
                 t[i] = polje[5 - i][2];
@@ -272,7 +273,7 @@ int main()
 
         else if (potez == 'R')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 3; i++)
             {
                 t[i] = polje[2 - i][5];
@@ -289,7 +290,7 @@ int main()
         }
         else if (potez == 'U')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 3; i++)
             {
                 t[i] = polje[3][i + 9];
@@ -302,7 +303,7 @@ int main()
         }
         else if (potez == 'B')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 3; i++)
             {
                 t[i] = polje[0][5 - i];
@@ -319,7 +320,7 @@ int main()
         }
         else if (potez == 'L')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 3; i++)
             {
                 t2[i] = polje[5 - i][11];
@@ -336,7 +337,7 @@ int main()
         }
         else if (potez == 'D')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 3; i++)
             {
                 t[i] = polje[5][i + 9];
@@ -349,7 +350,7 @@ int main()
         }
         else if (potez == 'o')
         {
-            printf("\n");
+            cout << "\n";
             for (int i = 0; i < 9; i++) // resetiranje kocke
             {
                 for (int j = 0; j < 12; j++)
@@ -372,7 +373,7 @@ int main()
         }
         else if (potez == 'p')
         {
-            printf("\n");
+            cout << "\n";
             srand(time(0));
             int izvuceni[20], ponavlja;
             for (int i = 0; i < 20; i++)
