@@ -27,98 +27,346 @@ void ispis(int polje[][12])
     }
 }
 
+void f(int polje[][12])
+{
+    int t[3], t2[3];
+    cout << "\n";
+    for (int i = 0; i < 3; i++)
+    {
+        t[i] = polje[2][5 - i];
+        t2[i] = polje[6][5 - i];
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        polje[2][i + 3] = polje[i + 3][6];
+        polje[6][i + 3] = polje[i + 3][2];
+        polje[i + 3][2] = t[i];
+        polje[i + 3][6] = t2[i];
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        t[i] = polje[3][i + 3];
+        polje[3][i + 3] = polje[i + 3][5];
+        t2[i] = polje[5 - i][3];
+        polje[5 - i][3] = t[i];
+        t[i] = polje[5][5 - i];
+        polje[5][5 - i] = t2[i];
+        polje[i + 3][5] = t[i];
+    }
+}
+
+void r(int polje[][12])
+{
+    int t[3], t2[3];
+    cout << "\n";
+    for (int i = 0; i < 3; i++)
+    {
+        t[i] = polje[8 - i][5];
+        t2[i] = polje[5 - i][9];
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        polje[i + 6][5] = polje[i + 3][5];
+        polje[i + 3][5] = polje[i][5];
+        polje[i][5] = t2[i];
+        polje[i + 3][9] = t[i];
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        t[i] = polje[3][i + 6];
+        polje[3][i + 6] = polje[i + 3][8];
+        t2[i] = polje[5 - i][6];
+        polje[5 - i][6] = t[i];
+        t[i] = polje[5][8 - i];
+        polje[5][8 - i] = t2[i];
+        polje[i + 3][8] = t[i];
+    }
+}
+
+void u(int polje[][12])
+{
+    int t[3], t2[3];
+    cout << "\n";
+    for (int i = 0; i < 3; i++)
+    {
+        t[i] = polje[3][i + 6];
+        polje[3][i + 6] = polje[3][i + 3];
+        polje[3][i + 3] = polje[3][i];
+        polje[3][i] = polje[3][i + 9];
+        polje[3][i + 9] = t[i];
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        t[i] = polje[0][i + 3];
+        polje[0][i + 3] = polje[i][5];
+        t2[i] = polje[2 - i][3];
+        polje[2 - i][3] = t[i];
+        t[i] = polje[2][5 - i];
+        polje[2][5 - i] = t2[i];
+        polje[i][5] = t[i];
+    }
+}
+
+void b(int polje[][12])
+{
+    int t[3], t2[3];
+    cout << "\n";
+    for (int i = 0; i < 3; i++)
+    {
+        t[i] = polje[5 - i][0];
+        t2[i] = polje[5 - i][8];
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        polje[i + 3][0] = polje[8][i + 3];
+        polje[i + 3][8] = polje[0][i + 3];
+        polje[8][i + 3] = t2[i];
+        polje[0][i + 3] = t[i];
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        t[i] = polje[3][i + 9];
+        polje[3][i + 9] = polje[i + 3][11];
+        t2[i] = polje[5 - i][9];
+        polje[5 - i][9] = t[i];
+        t[i] = polje[5][11 - i];
+        polje[5][11 - i] = t2[i];
+        polje[i + 3][11] = t[i];
+    }
+}
+
+void l(int polje[][12])
+{
+    int t[3], t2[3];
+    cout << "\n";
+    for (int i = 0; i < 3; i++)
+    {
+        t[i] = polje[2 - i][3];
+        t2[i] = polje[5 - i][11];
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        polje[i][3] = polje[i + 3][3];
+        polje[i + 3][3] = polje[i + 6][3];
+        polje[i + 6][3] = t2[i];
+        polje[i + 3][11] = t[i];
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        t[i] = polje[3][i];
+        polje[3][i] = polje[i + 3][2];
+        t2[i] = polje[5 - i][0];
+        polje[5 - i][0] = t[i];
+        t[i] = polje[5][2 - i];
+        polje[5][2 - i] = t2[i];
+        polje[i + 3][2] = t[i];
+    }
+}
+
+void d(int polje[][12])
+{
+    int t[3], t2[3];
+    cout << "\n";
+    for (int i = 0; i < 3; i++)
+    {
+        t[i] = polje[5][i];
+        polje[5][i] = polje[5][i + 3];
+        polje[5][i + 3] = polje[5][i + 6];
+        polje[5][i + 6] = polje[5][i + 9];
+        polje[5][i + 9] = t[i];
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        t[i] = polje[6][i + 3];
+        polje[6][i + 3] = polje[i + 6][5];
+        t2[i] = polje[8 - i][3];
+        polje[8 - i][3] = t[i];
+        t[i] = polje[8][5 - i];
+        polje[8][5 - i] = t2[i];
+        polje[i + 6][5] = t[i];
+    }
+}
+
+void F(int polje[][12])
+{
+    int t[3], t2[3];
+    cout << "\n";
+    for (int i = 0; i < 3; i++)
+    {
+        t[i] = polje[5 - i][2];
+        t2[i] = polje[5 - i][6];
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        polje[i + 3][2] = polje[6][i + 3];
+        polje[i + 3][6] = polje[2][i + 3];
+        polje[2][i + 3] = t[i];
+        polje[6][i + 3] = t2[i];
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        t[i] = polje[3][i + 3];
+        polje[3][i + 3] = polje[5 - i][3];
+        t2[i] = polje[i + 3][5];
+        polje[i + 3][5] = t[i];
+        t[i] = polje[5][5 - i];
+        polje[5][5 - i] = t2[i];
+        polje[5 - i][3] = t[i];
+    }
+}
+
+void R(int polje[][12])
+{
+    int t[3], t2[3];
+    cout << "\n";
+    for (int i = 0; i < 3; i++)
+    {
+        t[i] = polje[2 - i][5];
+        t2[i] = polje[5 - i][9];
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        polje[i][5] = polje[i + 3][5];
+        polje[i + 3][5] = polje[i + 6][5];
+        polje[i + 6][5] = t2[i];
+        polje[i + 3][9] = t[i];
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        t[i] = polje[3][i + 6];
+        polje[3][i + 6] = polje[5 - i][6];
+        t2[i] = polje[i + 3][8];
+        polje[i + 3][8] = t[i];
+        t[i] = polje[5][8 - i];
+        polje[5][8 - i] = t2[i];
+        polje[5 - i][6] = t[i];
+    }
+}
+
+void U(int polje[][12])
+{
+    int t[3], t2[3];
+    cout << "\n";
+    for (int i = 0; i < 3; i++)
+    {
+        t[i] = polje[3][i + 9];
+        polje[3][i + 9] = polje[3][i];
+        polje[3][i] = polje[3][i + 3];
+        polje[3][i + 3] = polje[3][i + 6];
+        polje[3][i + 6] = t[i];
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        t[i] = polje[0][i + 3];
+        polje[0][i + 3] = polje[2 - i][3];
+        t2[i] = polje[i][5];
+        polje[i][5] = t[i];
+        t[i] = polje[2][5 - i];
+        polje[2][5 - i] = t2[i];
+        polje[2 - i][3] = t[i];
+    }
+}
+
+void B(int polje[][12])
+{
+    int t[3], t2[3];
+    cout << "\n";
+    for (int i = 0; i < 3; i++)
+    {
+        t[i] = polje[0][5 - i];
+        t2[i] = polje[8][5 - i];
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        polje[8][i + 3] = polje[i + 3][0];
+        polje[0][i + 3] = polje[i + 3][8];
+        polje[i + 3][0] = t[i];
+        polje[i + 3][8] = t2[i];
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        t[i] = polje[3][i + 9];
+        polje[3][i + 9] = polje[5 - i][9];
+        t2[i] = polje[i + 3][11];
+        polje[i + 3][11] = t[i];
+        t[i] = polje[5][11 - i];
+        polje[5][11 - i] = t2[i];
+        polje[5 - i][9] = t[i];
+    }
+}
+
+void L(int polje[][12])
+{
+    int t[3], t2[3];
+    cout << "\n";
+    for (int i = 0; i < 3; i++)
+    {
+        t2[i] = polje[5 - i][11];
+        t[i] = polje[8 - i][3];
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        polje[i + 6][3] = polje[i + 3][3];
+        polje[i + 3][3] = polje[i][3];
+        polje[i][3] = t2[i];
+        polje[i + 3][11] = t[i];
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        t[i] = polje[3][i];
+        polje[3][i] = polje[5 - i][0];
+        t2[i] = polje[i + 3][2];
+        polje[i + 3][2] = t[i];
+        t[i] = polje[5][2 - i];
+        polje[5][2 - i] = t2[i];
+        polje[5 - i][0] = t[i];
+    }
+}
+
+void D(int polje[][12])
+{
+    int t[3], t2[3];
+    cout << "\n";
+    for (int i = 0; i < 3; i++)
+    {
+        t[i] = polje[5][i + 9];
+        polje[5][i + 9] = polje[5][i + 6];
+        polje[5][i + 6] = polje[5][i + 3];
+        polje[5][i + 3] = polje[5][i];
+        polje[5][i] = t[i];
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        t[i] = polje[6][i + 3];
+        polje[6][i + 3] = polje[8 - i][3];
+        t2[i] = polje[i + 6][5];
+        polje[i + 6][5] = t[i];
+        t[i] = polje[8][5 - i];
+        polje[8][5 - i] = t2[i];
+        polje[8 - i][3] = t[i];
+    }
+}
+
 void random(int polje[][12])
 {
     srand(time(0));
     int izvuceni[20], t[3], t2[3];
     for (int i = 0; i < 20; i++)
-    {
         izvuceni[i] = rand() % 6 + 1;
-    }
     for (int i = 0; i < 20; i++)
     {
         if (izvuceni[i] == 1)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[5 - i][2];
-                t2[i] = polje[5 - i][6];
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                polje[i + 3][2] = polje[6][i + 3];
-                polje[i + 3][6] = polje[2][i + 3];
-                polje[2][i + 3] = t[i];
-                polje[6][i + 3] = t2[i];
-            }
-        }
+            f(polje);
         else if (izvuceni[i] == 2)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[2 - i][5];
-                t2[i] = polje[5 - i][9];
-            }
-            for (int i = 0; i < 3; i++) // random shuffle
-            {
-                polje[i][5] = polje[i + 3][5];
-                polje[i + 3][5] = polje[i + 6][5];
-                polje[i + 6][5] = t2[i];
-                polje[i + 3][9] = t[i];
-            }
-        }
+            r(polje);
         else if (izvuceni[i] == 3)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[3][i + 9];
-                polje[3][i + 9] = polje[3][i];
-                polje[3][i] = polje[3][i + 3];
-                polje[3][i + 3] = polje[3][i + 6];
-                polje[3][i + 6] = t[i];
-            }
-        }
+            u(polje);
         else if (izvuceni[i] == 4)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[0][5 - i];
-                t2[i] = polje[8][5 - i];
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                polje[8][i + 3] = polje[i + 3][0];
-                polje[0][i + 3] = polje[i + 3][8];
-                polje[i + 3][0] = t[i];
-                polje[i + 3][8] = t2[i];
-            }
-        }
+            b(polje);
         else if (izvuceni[i] == 5)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                t2[i] = polje[5 - i][11];
-                t[i] = polje[8 - i][3];
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                polje[i + 6][3] = polje[i + 3][3];
-                polje[i + 3][3] = polje[i][3];
-                polje[i][3] = t2[i];
-                polje[i + 3][11] = t[1];
-            }
-        }
-        else if (izvuceni[i] == 6)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[5][i + 9];
-                polje[5][i + 9] = polje[5][i + 6];
-                polje[5][i + 6] = polje[5][i + 3];
-                polje[5][i + 3] = polje[5][i];
-                polje[5][i] = t[i];
-            }
-        }
+            l(polje);
+        else
+            d(polje);
     }
 }
 
@@ -149,10 +397,8 @@ int main()
     char potez;
     int t[3], t2[3];
     int polje[9][12] = {0}, menu; // deklaracija polja
-    cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku ili slovo 'p' kako bi preslozili kocku\n\n"
-         << endl;
-    cout << "Zelite li zapoceti igru sa slozenom ili pomijesanom kockom?\nZa slozenu upisite 1 a za pomijesanu upisite 2\n"
-         << endl;
+    cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku ili slovo 'p' kako bi preslozili kocku\n\n";
+    cout << "Zelite li zapoceti igru sa slozenom ili pomijesanom kockom?\nZa slozenu upisite 1 a za pomijesanu upisite 2\n";
     cin >> menu;
     if (menu == 1)
     {
@@ -169,321 +415,73 @@ int main()
         cin >> potez;
         if (potez == 'f')
         {
-            cout << "\n";
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[2][5 - i];
-                t2[i] = polje[6][5 - i];
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                polje[2][i + 3] = polje[i + 3][6];
-                polje[6][i + 3] = polje[i + 3][2];
-                polje[i + 3][2] = t[i];
-                polje[i + 3][6] = t2[i];
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                t[i] = polje[3][i + 3];
-                polje[3][i + 3] = polje[i + 3][5];
-                t2[i] = polje[5 - i][3];
-                polje[5 - i][3] = t[i];
-                t[i] = polje[5][5 - i];
-                polje[5][5 - i] = t2[i];
-                polje[i + 3][5] = t[i];
-            }
+            f(polje);
             ispis(polje);
         }
 
         else if (potez == 'r')
         {
-            cout << "\n";
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[8 - i][5];
-                t2[i] = polje[5 - i][9];
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                polje[i + 6][5] = polje[i + 3][5];
-                polje[i + 3][5] = polje[i][5];
-                polje[i][5] = t2[i];
-                polje[i + 3][9] = t[i];
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                t[i] = polje[3][i + 6];
-                polje[3][i + 6] = polje[i + 3][8];
-                t2[i] = polje[5 - i][6];
-                polje[5 - i][6] = t[i];
-                t[i] = polje[5][8 - i];
-                polje[5][8 - i] = t2[i];
-                polje[i + 3][8] = t[i];
-            }
+            r(polje);
             ispis(polje);
         }
 
         else if (potez == 'u')
         {
-            cout << "\n";
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[3][i + 6];
-                polje[3][i + 6] = polje[3][i + 3];
-                polje[3][i + 3] = polje[3][i];
-                polje[3][i] = polje[3][i + 9];
-                polje[3][i + 9] = t[i];
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                t[i] = polje[0][i + 3];
-                polje[0][i + 3] = polje[i][5];
-                t2[i] = polje[2 - i][3];
-                polje[2 - i][3] = t[i];
-                t[i] = polje[2][5 - i];
-                polje[2][5 - i] = t2[i];
-                polje[i][5] = t[i];
-            }
+            u(polje);
             ispis(polje);
         }
 
         else if (potez == 'b')
         {
-            cout << "\n";
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[5 - i][0];
-                t2[i] = polje[5 - i][8];
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                polje[i + 3][0] = polje[8][i + 3];
-                polje[i + 3][8] = polje[0][i + 3];
-                polje[8][i + 3] = t2[i];
-                polje[0][i + 3] = t[i];
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                t[i] = polje[3][i + 9];
-                polje[3][i + 9] = polje[i + 3][11];
-                t2[i] = polje[5 - i][9];
-                polje[5 - i][9] = t[i];
-                t[i] = polje[5][11 - i];
-                polje[5][11 - i] = t2[i];
-                polje[i + 3][11] = t[i];
-            }
+            b(polje);
             ispis(polje);
         }
 
         else if (potez == 'l')
         {
-            cout << "\n";
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[2 - i][3];
-                t2[i] = polje[5 - i][11];
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                polje[i][3] = polje[i + 3][3];
-                polje[i + 3][3] = polje[i + 6][3];
-                polje[i + 6][3] = t2[i];
-                polje[i + 3][11] = t[i];
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                t[i] = polje[3][i];
-                polje[3][i] = polje[i + 3][2];
-                t2[i] = polje[5 - i][0];
-                polje[5 - i][0] = t[i];
-                t[i] = polje[5][2 - i];
-                polje[5][2 - i] = t2[i];
-                polje[i + 3][2] = t[i];
-            }
+            l(polje);
             ispis(polje);
         }
 
         else if (potez == 'd')
         {
-            cout << "\n";
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[5][i];
-                polje[5][i] = polje[5][i + 3];
-                polje[5][i + 3] = polje[5][i + 6];
-                polje[5][i + 6] = polje[5][i + 9];
-                polje[5][i + 9] = t[i];
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                t[i] = polje[6][i + 3];
-                polje[6][i + 3] = polje[i + 6][5];
-                t2[i] = polje[8 - i][3];
-                polje[8 - i][3] = t[i];
-                t[i] = polje[8][5 - i];
-                polje[8][5 - i] = t2[i];
-                polje[i + 6][5] = t[i];
-            }
+            d(polje);
             ispis(polje);
         }
 
         else if (potez == 'F')
         {
-            cout << "\n";
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[5 - i][2];
-                t2[i] = polje[5 - i][6];
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                polje[i + 3][2] = polje[6][i + 3];
-                polje[i + 3][6] = polje[2][i + 3];
-                polje[2][i + 3] = t[i];
-                polje[6][i + 3] = t2[i];
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                t[i] = polje[3][i + 3];
-                polje[3][i + 3] = polje[5 - i][3];
-                t2[i] = polje[i + 3][5];
-                polje[i + 3][5] = t[i];
-                t[i] = polje[5][5 - i];
-                polje[5][5 - i] = t2[i];
-                polje[5 - i][3] = t[i];
-            }
+            F(polje);
             ispis(polje);
         }
 
         else if (potez == 'R')
         {
-            cout << "\n";
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[2 - i][5];
-                t2[i] = polje[5 - i][9];
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                polje[i][5] = polje[i + 3][5];
-                polje[i + 3][5] = polje[i + 6][5];
-                polje[i + 6][5] = t2[i];
-                polje[i + 3][9] = t[i];
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                t[i] = polje[3][i + 6];
-                polje[3][i + 6] = polje[5 - i][6];
-                t2[i] = polje[i + 3][8];
-                polje[i + 3][8] = t[i];
-                t[i] = polje[5][8 - i];
-                polje[5][8 - i] = t2[i];
-                polje[5 - i][6] = t[i];
-            }
+            R(polje);
             ispis(polje);
         }
 
         else if (potez == 'U')
         {
-            cout << "\n";
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[3][i + 9];
-                polje[3][i + 9] = polje[3][i];
-                polje[3][i] = polje[3][i + 3];
-                polje[3][i + 3] = polje[3][i + 6];
-                polje[3][i + 6] = t[i];
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                t[i] = polje[0][i + 3];
-                polje[0][i + 3] = polje[2 - i][3];
-                t2[i] = polje[i][5];
-                polje[i][5] = t[i];
-                t[i] = polje[2][5 - i];
-                polje[2][5 - i] = t2[i];
-                polje[2 - i][3] = t[i];
-            }
+            U(polje);
             ispis(polje);
         }
 
         else if (potez == 'B')
         {
-            cout << "\n";
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[0][5 - i];
-                t2[i] = polje[8][5 - i];
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                polje[8][i + 3] = polje[i + 3][0];
-                polje[0][i + 3] = polje[i + 3][8];
-                polje[i + 3][0] = t[i];
-                polje[i + 3][8] = t2[i];
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                t[i] = polje[3][i + 9];
-                polje[3][i + 9] = polje[5 - i][9];
-                t2[i] = polje[i + 3][11];
-                polje[i + 3][11] = t[i];
-                t[i] = polje[5][11 - i];
-                polje[5][11 - i] = t2[i];
-                polje[5 - i][9] = t[i];
-            }
+            B(polje);
             ispis(polje);
         }
 
         else if (potez == 'L')
         {
-            cout << "\n";
-            for (int i = 0; i < 3; i++)
-            {
-                t2[i] = polje[5 - i][11];
-                t[i] = polje[8 - i][3];
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                polje[i + 6][3] = polje[i + 3][3];
-                polje[i + 3][3] = polje[i][3];
-                polje[i][3] = t2[i];
-                polje[i + 3][11] = t[i];
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                t[i] = polje[3][i];
-                polje[3][i] = polje[5 - i][0];
-                t2[i] = polje[i + 3][2];
-                polje[i + 3][2] = t[i];
-                t[i] = polje[5][2 - i];
-                polje[5][2 - i] = t2[i];
-                polje[5 - i][0] = t[i];
-            }
+            L(polje);
             ispis(polje);
         }
 
         else if (potez == 'D')
         {
-            cout << "\n";
-            for (int i = 0; i < 3; i++)
-            {
-                t[i] = polje[5][i + 9];
-                polje[5][i + 9] = polje[5][i + 6];
-                polje[5][i + 6] = polje[5][i + 3];
-                polje[5][i + 3] = polje[5][i];
-                polje[5][i] = t[i];
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                t[i] = polje[6][i + 3];
-                polje[6][i + 3] = polje[8 - i][3];
-                t2[i] = polje[i + 6][5];
-                polje[i + 6][5] = t[i];
-                t[i] = polje[8][5 - i];
-                polje[8][5 - i] = t2[i];
-                polje[8 - i][3] = t[i];
-            }
+            D(polje);
             ispis(polje);
         }
 
