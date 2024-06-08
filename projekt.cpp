@@ -397,14 +397,12 @@ int main()
     char potez;
     int t[3], t2[3];
     int polje[9][12] = {0}, menu; // deklaracija polja
+    reset(polje);
     cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku ili slovo 'p' kako bi preslozili kocku\n\n";
     cout << "Zelite li zapoceti igru sa slozenom ili pomijesanom kockom?\nZa slozenu upisite 1 a za pomijesanu upisite 2\n";
     cin >> menu;
     if (menu == 1)
-    {
-        reset(polje);
         ispis(polje);
-    }
     else
     {
         random(polje);
