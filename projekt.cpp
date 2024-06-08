@@ -1,5 +1,6 @@
 #include <iostream>
 #include <time.h>
+#include <fstream>
 using namespace std;
 
 void ispis(int polje[][12])
@@ -394,6 +395,18 @@ void reset(int polje[][12])
 
 int main()
 {
+    char loz[30];
+    fstream lozinka;
+    datoteka.open("lozinka.bin");
+    char 
+    cout << "2d rubikova\n\n";
+    cout << "Upisite lozinku: ";
+    for (int i = 0; i < 3; i++)
+    {
+        cin >> loz;
+        if (loz != "banana")
+            cout << "Netocna lozinka, pokusajte ponovno: ";
+    }
     char potez;
     int polje[9][12] = {0}, menu; // deklaracija polja
     reset(polje);
