@@ -394,6 +394,7 @@ void reset(int polje[][12])
 
 int main()
 {
+    char potez;
     int polje[9][12] = {0}, menu; // deklaracija polja
     reset(polje);
     cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku ili slovo 'p' kako bi preslozili kocku\n\n";
