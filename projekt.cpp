@@ -445,15 +445,16 @@ int main()
     char potez;
     int polje[9][12] = {0}, menu, izbor; // deklaracija polja
 label:
-    cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku ili slovo 'p' kako bi preslozili kocku\n\nZelite li igrati normalno ili vremenski, za normalno upišite 1 a za vremenski 2" << endl;
+    cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku, slovo 'e' kako bi izasli iz programa, slovo 'M' kako be se vratili na meni\n ili slovo 'p' kako bi preslozili kocku\n\nZelite li igrati normalno ili vremenski, za normalno upišite 1 a za vremenski 2" << endl;
     while (1)
     {
         cin >> izbor;
         if (izbor == 1)
         {
-            cout << "Zelite li zapoceti igru sa slozenom ili pomijesanom kockom?\nZa slozenu upisite 1 a za pomijesanu upisite 2" << endl;
             while (1)
             {
+            meni:
+                cout << "\nMeni:\nUpisite 1 za pocetak sa slozenom kockom\nUpisite 2 za pocetak sa pomjesanom kockom\nUpisite 3 za ucitavanje save slot-a\nUpisite 4 za brisanje save slot-a\nUpisite 5 za odlazak nazad na pocetni odabir\n";
                 cin >> menu;
                 if (menu == 1)
                 {
@@ -518,7 +519,7 @@ label:
                                 cout << "Taj save slot je prazan, unesite neki drugi: ";
                         }
                         else if (slot == 4)
-                            goto label;
+                            goto meni;
                         else
                             cout << "Slot koji ste unjeli ne postoji, pokusajte ponovno: ";
                     }
@@ -535,28 +536,35 @@ label:
                         cin >> slot;
                         if (slot == 1)
                         {
-                            fstream save1("save1", ios::binary | ios::trunc);
+                            ofstream save1("save1.bin", ios::binary | ios::trunc);
                             save1.close();
+                            cout << "\nSlot je uspjesno izbrisan\n\n";
                             break;
                         }
                         else if (slot == 2)
                         {
-                            fstream save2("save2", ios::binary | ios::trunc);
+                            ofstream save2("save2.bin", ios::binary | ios::trunc);
                             save2.close();
+                            cout << "\nSlot je uspjesno izbrisan\n\n";
                             break;
                         }
                         else if (slot == 3)
                         {
-                            fstream save3("save3", ios::binary | ios::trunc);
+                            ofstream save3("save3.bin", ios::binary | ios::trunc);
                             save3.close();
+                            cout << "\nSlot je uspjesno izbrisan\n\n";
                             break;
                         }
                         else if (slot == 4)
-                            goto label;
+                            goto meni;
                         else
                             cout << "Slot koji ste unjeli ne postoji, pokusajte ponovno: ";
                     }
                 }
+
+                else if (menu == 5)
+                    goto label;
+
                 else
                     cout << "Neispravan unos, pokusajte ponovno: ";
             }
@@ -693,7 +701,7 @@ label:
                 }
 
                 else if (potez == 'M')
-                    goto label;
+                    goto meni;
 
                 else
                     cout << "\nPotez koji ste unjeli ne postoji, molim da unesete jedan od postojecih poteza." << endl;
@@ -702,6 +710,7 @@ label:
 
         else if (izbor == 2)
         {
+            string ime;
             reset(polje);
             random(polje);
             cout << "\nVrijeme je zapocelo\n";
@@ -716,6 +725,12 @@ label:
                     auto duration = chrono::duration_cast<chrono::seconds>(end - start);
                     cout << "Kocka je rijesena, bravo!\n";
                     cout << "Rijesili ste kocku za: " << duration.count() << " sekundi" << endl;
+                    fstream leaderboard("leaderboard.txt", ios::app);
+                    cout << "Upisite svoje ime: ";
+                    cin >> ime;
+                    leaderboard << ime << " - " << duration.count() << " sekundi" << endl;
+                    leaderboard.close();
+                    cout << "Vase ime i vrijeme je pohranjeno u leaderboard-u" << endl;
                     goto exit;
                 }
                 else
@@ -792,7 +807,7 @@ label:
                         D(polje);
                         ispis(polje);
                     }
-                    
+
                     else if (potez == 'o')
                     {
                         cout << "\n";
