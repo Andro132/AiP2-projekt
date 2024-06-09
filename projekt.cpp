@@ -78,7 +78,6 @@ bool rijeseno(int polje[][12])
 void f(int polje[][12])
 {
     int t[3], t2[3];
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
         t[i] = polje[2][5 - i];
@@ -106,7 +105,6 @@ void f(int polje[][12])
 void r(int polje[][12])
 {
     int t[3], t2[3];
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
         t[i] = polje[8 - i][5];
@@ -134,7 +132,6 @@ void r(int polje[][12])
 void u(int polje[][12])
 {
     int t[3], t2[3];
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
         t[i] = polje[3][i + 6];
@@ -158,7 +155,6 @@ void u(int polje[][12])
 void b(int polje[][12])
 {
     int t[3], t2[3];
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
         t[i] = polje[5 - i][0];
@@ -186,7 +182,6 @@ void b(int polje[][12])
 void l(int polje[][12])
 {
     int t[3], t2[3];
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
         t[i] = polje[2 - i][3];
@@ -214,7 +209,6 @@ void l(int polje[][12])
 void d(int polje[][12])
 {
     int t[3], t2[3];
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
         t[i] = polje[5][i];
@@ -238,7 +232,6 @@ void d(int polje[][12])
 void F(int polje[][12])
 {
     int t[3], t2[3];
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
         t[i] = polje[5 - i][2];
@@ -266,7 +259,6 @@ void F(int polje[][12])
 void R(int polje[][12])
 {
     int t[3], t2[3];
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
         t[i] = polje[2 - i][5];
@@ -294,7 +286,6 @@ void R(int polje[][12])
 void U(int polje[][12])
 {
     int t[3], t2[3];
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
         t[i] = polje[3][i + 9];
@@ -318,7 +309,6 @@ void U(int polje[][12])
 void B(int polje[][12])
 {
     int t[3], t2[3];
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
         t[i] = polje[0][5 - i];
@@ -346,7 +336,6 @@ void B(int polje[][12])
 void L(int polje[][12])
 {
     int t[3], t2[3];
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
         t2[i] = polje[5 - i][11];
@@ -374,7 +363,6 @@ void L(int polje[][12])
 void D(int polje[][12])
 {
     int t[3], t2[3];
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
         t[i] = polje[5][i + 9];
@@ -442,368 +430,239 @@ void reset(int polje[][12])
 
 int main()
 {
-    char potez;
-    int polje[9][12] = {0}, menu, izbor; // deklaracija polja
-label:
-    cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku, slovo 'e' kako bi izasli iz programa, slovo 'M' kako be se vratili na meni\n ili slovo 'p' kako bi preslozili kocku\n\nZelite li igrati normalno ili vremenski, za normalno upišite 1 a za vremenski 2" << endl;
-    while (1)
+    int pok = 0;
+    string loz, prov;
+    fstream lozinka;
+    lozinka.open("lozinka.txt");
+    lozinka >> prov;
+    lozinka.close();
+    cout << "\t2d rubikova\n\n";
+    cout << "Upisite lozinku: ";
+start:
+    cin >> loz;
+    if (loz == prov)
     {
-        cin >> izbor;
-        if (izbor == 1)
+        cout << "\nLozinka je tocna, pristup odobren\n\n";
+        char potez;
+        int polje[9][12] = {0}, menu, izbor; // deklaracija polja
+    label:
+        cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku, slovo 'e' kako bi izasli iz programa, slovo 'M' kako be se vratili na meni\n ili slovo 'p' kako bi preslozili kocku\n\nZelite li igrati normalno ili vremenski, za normalno upišite 1 a za vremenski 2" << endl;
+        while (1)
         {
-            while (1)
+            cin >> izbor;
+            if (izbor == 1)
             {
-            meni:
-                cout << "\nMeni:\nUpisite 1 za pocetak sa slozenom kockom\nUpisite 2 za pocetak sa pomjesanom kockom\nUpisite 3 za ucitavanje save slot-a\nUpisite 4 za brisanje save slot-a\nUpisite 5 za odlazak nazad na pocetni odabir\n";
-                cin >> menu;
-                if (menu == 1)
+                while (1)
                 {
-                    reset(polje);
-                    ispis(polje);
-                    break;
-                }
-
-                else if (menu == 2)
-                {
-                    reset(polje);
-                    random(polje);
-                    ispis(polje);
-                    break;
-                }
-
-                else if (menu == 3)
-                {
-                    cout << "Ako ipak ne zelite ucitati save slot unesite broj 4." << endl;
-                    cout << "Koji save slot zelite ucitati? ";
-                    int slot;
-                    while (1)
+                meni:
+                    cout << "\nMeni:\nUpisite 1 za pocetak sa slozenom kockom\nUpisite 2 za pocetak sa pomjesanom kockom\nUpisite 3 za ucitavanje save slot-a\nUpisite 4 za brisanje save slot-a\nUpisite 5 za odlazak nazad na pocetni odabir\nUpisite 6 ako zelite promjeniti lozinku\n";
+                    cin >> menu;
+                    if (menu == 1)
                     {
-                        cin >> slot;
-                        if (slot == 1)
+                        reset(polje);
+                        ispis(polje);
+                        break;
+                    }
+
+                    else if (menu == 2)
+                    {
+                        reset(polje);
+                        random(polje);
+                        ispis(polje);
+                        break;
+                    }
+
+                    else if (menu == 3)
+                    {
+                        cout << "Ako ipak ne zelite ucitati save slot unesite broj 4." << endl;
+                        cout << "Koji save slot zelite ucitati? ";
+                        int slot;
+                        while (1)
                         {
-                            fstream save1("save1.bin", ios::binary | ios::in);
-                            save1.read(reinterpret_cast<char *>(polje), sizeof(polje));
-                            save1.close();
-                            if (polje[3][3] != 0)
+                            cin >> slot;
+                            if (slot == 1)
                             {
-                                ispis(polje);
+                                fstream save1("save1.bin", ios::binary | ios::in);
+                                save1.read(reinterpret_cast<char *>(polje), sizeof(polje));
+                                save1.close();
+                                if (polje[3][3] != 0)
+                                {
+                                    ispis(polje);
+                                    break;
+                                }
+                                else
+                                    cout << "Taj save slot je prazan, unesite neki drugi: ";
+                            }
+                            else if (slot == 2)
+                            {
+                                fstream save2("save2.bin", ios::binary | ios::in);
+                                save2.read(reinterpret_cast<char *>(polje), sizeof(polje));
+                                save2.close();
+                                if (polje[3][3] != 0)
+                                {
+                                    ispis(polje);
+                                    break;
+                                }
+                                else
+                                    cout << "Taj save slot je prazan, unesite neki drugi: ";
+                            }
+                            else if (slot == 3)
+                            {
+                                fstream save3("save3.bin", ios::binary | ios::in);
+                                save3.read(reinterpret_cast<char *>(polje), sizeof(polje));
+                                save3.close();
+                                if (polje[3][3] != 0)
+                                {
+                                    ispis(polje);
+                                    break;
+                                }
+                                else
+                                    cout << "Taj save slot je prazan, unesite neki drugi: ";
+                            }
+                            else if (slot == 4)
+                                goto meni;
+                            else
+                                cout << "Slot koji ste unjeli ne postoji, pokusajte ponovno: ";
+                        }
+                        break;
+                    }
+
+                    else if (menu == 4)
+                    {
+                        cout << "Ako ipak ne zelite izbrisati save slot unesite broj 4." << endl;
+                        cout << "Koji slot želite izbrisati? ";
+                        int slot;
+                        while (1)
+                        {
+                            cin >> slot;
+                            if (slot == 1)
+                            {
+                                ofstream save1("save1.bin", ios::binary | ios::trunc);
+                                save1.close();
+                                cout << "\nSlot je uspjesno izbrisan\n\n";
                                 break;
                             }
-                            else
-                                cout << "Taj save slot je prazan, unesite neki drugi: ";
-                        }
-                        else if (slot == 2)
-                        {
-                            fstream save2("save2.bin", ios::binary | ios::in);
-                            save2.read(reinterpret_cast<char *>(polje), sizeof(polje));
-                            save2.close();
-                            if (polje[3][3] != 0)
+                            else if (slot == 2)
                             {
-                                ispis(polje);
+                                ofstream save2("save2.bin", ios::binary | ios::trunc);
+                                save2.close();
+                                cout << "\nSlot je uspjesno izbrisan\n\n";
                                 break;
                             }
-                            else
-                                cout << "Taj save slot je prazan, unesite neki drugi: ";
-                        }
-                        else if (slot == 3)
-                        {
-                            fstream save3("save3.bin", ios::binary | ios::in);
-                            save3.read(reinterpret_cast<char *>(polje), sizeof(polje));
-                            save3.close();
-                            if (polje[3][3] != 0)
+                            else if (slot == 3)
                             {
-                                ispis(polje);
+                                ofstream save3("save3.bin", ios::binary | ios::trunc);
+                                save3.close();
+                                cout << "\nSlot je uspjesno izbrisan\n\n";
                                 break;
                             }
+                            else if (slot == 4)
+                                goto meni;
                             else
-                                cout << "Taj save slot je prazan, unesite neki drugi: ";
+                                cout << "Slot koji ste unjeli ne postoji, pokusajte ponovno: ";
                         }
-                        else if (slot == 4)
-                            goto meni;
-                        else
-                            cout << "Slot koji ste unjeli ne postoji, pokusajte ponovno: ";
                     }
-                    break;
-                }
 
-                else if (menu == 4)
-                {
-                    cout << "Ako ipak ne zelite izbrisati save slot unesite broj 4." << endl;
-                    cout << "Koji slot želite izbrisati? ";
-                    int slot;
-                    while (1)
+                    else if (menu == 5)
+                        goto label;
+
+                    else if (menu == 6)
                     {
-                        cin >> slot;
-                        if (slot == 1)
-                        {
-                            ofstream save1("save1.bin", ios::binary | ios::trunc);
-                            save1.close();
-                            cout << "\nSlot je uspjesno izbrisan\n\n";
-                            break;
-                        }
-                        else if (slot == 2)
-                        {
-                            ofstream save2("save2.bin", ios::binary | ios::trunc);
-                            save2.close();
-                            cout << "\nSlot je uspjesno izbrisan\n\n";
-                            break;
-                        }
-                        else if (slot == 3)
-                        {
-                            ofstream save3("save3.bin", ios::binary | ios::trunc);
-                            save3.close();
-                            cout << "\nSlot je uspjesno izbrisan\n\n";
-                            break;
-                        }
-                        else if (slot == 4)
-                            goto meni;
-                        else
-                            cout << "Slot koji ste unjeli ne postoji, pokusajte ponovno: ";
+                        cout << "Unesite novu lozinku: ";
+                        cin >> prov;
+                        lozinka.open("lozinka.txt");
+                        lozinka << prov;
+                        lozinka.close();
+                        cout << "\nLozinka je uspjesno promijejena\n";
                     }
+
+                    else
+                        cout << "Neispravan unos, pokusajte ponovno: ";
                 }
 
-                else if (menu == 5)
-                    goto label;
-
-                else
-                    cout << "Neispravan unos, pokusajte ponovno: ";
-            }
-
-            while (1)
-            {
-                cin >> potez;
-                if (potez == 'f')
-                {
-                    f(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'r')
-                {
-                    r(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'u')
-                {
-                    u(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'b')
-                {
-                    b(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'l')
-                {
-                    l(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'd')
-                {
-                    d(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'F')
-                {
-                    F(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'R')
-                {
-                    R(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'U')
-                {
-                    U(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'B')
-                {
-                    B(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'L')
-                {
-                    L(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'D')
-                {
-                    D(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'o')
-                {
-                    cout << "\n";
-                    reset(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 'p')
-                {
-                    cout << "\n";
-                    random(polje);
-                    ispis(polje);
-                }
-
-                else if (potez == 's')
-                {
-                    cout << "Ako ipak ne zelite spremiti kocku unesite broj 4." << endl;
-                    cout << "Koji save slot zelite zauzeti? ";
-                    int slot;
-                    while (1)
-                    {
-                        cin >> slot;
-                        if (slot == 1)
-                        {
-                            fstream save1("save1.bin", ios::binary | ios::out);
-                            save1.write(reinterpret_cast<char *>(polje), sizeof(polje));
-                            save1.close();
-                            break;
-                        }
-                        else if (slot == 2)
-                        {
-                            fstream save2("save2.bin", ios::binary | ios::out);
-                            save2.write(reinterpret_cast<char *>(polje), sizeof(polje));
-                            save2.close();
-                            break;
-                        }
-                        else if (slot == 3)
-                        {
-                            fstream save3("save3.bin", ios::binary | ios::out);
-                            save3.write(reinterpret_cast<char *>(polje), sizeof(polje));
-                            save3.close();
-                            break;
-                        }
-                        else if (slot == 4)
-                            break;
-                        else
-                            cout << "Slot koji ste unjeli ne postoji, pokusajte ponovno: ";
-                    }
-                }
-
-                else if (potez == 'e')
-                {
-                    cout << "Izlaz iz programa.";
-                    goto exit;
-                }
-
-                else if (potez == 'M')
-                    goto meni;
-
-                else
-                    cout << "\nPotez koji ste unjeli ne postoji, molim da unesete jedan od postojecih poteza." << endl;
-            }
-        }
-
-        else if (izbor == 2)
-        {
-            string ime;
-            reset(polje);
-            random(polje);
-            cout << "\nVrijeme je zapocelo\n";
-            ispis(polje);
-            auto start = chrono::high_resolution_clock::now();
-            cout << "\n";
-            while (1)
-            {
-                if (rijeseno(polje))
-                {
-                    auto end = chrono::high_resolution_clock::now();
-                    auto duration = chrono::duration_cast<chrono::seconds>(end - start);
-                    cout << "Kocka je rijesena, bravo!\n";
-                    cout << "Rijesili ste kocku za: " << duration.count() << " sekundi" << endl;
-                    fstream leaderboard("leaderboard.txt", ios::app);
-                    cout << "Upisite svoje ime: ";
-                    cin >> ime;
-                    leaderboard << ime << " - " << duration.count() << " sekundi" << endl;
-                    leaderboard.close();
-                    cout << "Vase ime i vrijeme je pohranjeno u leaderboard-u" << endl;
-                    goto exit;
-                }
-                else
+                while (1)
                 {
                     cin >> potez;
                     if (potez == 'f')
                     {
+                        cout << "\n";
                         f(polje);
                         ispis(polje);
                     }
 
                     else if (potez == 'r')
                     {
+                        cout << "\n";
                         r(polje);
                         ispis(polje);
                     }
 
                     else if (potez == 'u')
                     {
+                        cout << "\n";
                         u(polje);
                         ispis(polje);
                     }
 
                     else if (potez == 'b')
                     {
+                        cout << "\n";
                         b(polje);
                         ispis(polje);
                     }
 
                     else if (potez == 'l')
                     {
+                        cout << "\n";
                         l(polje);
                         ispis(polje);
                     }
 
                     else if (potez == 'd')
                     {
+                        cout << "\n";
                         d(polje);
                         ispis(polje);
                     }
 
                     else if (potez == 'F')
                     {
+                        cout << "\n";
                         F(polje);
                         ispis(polje);
                     }
 
                     else if (potez == 'R')
                     {
+                        cout << "\n";
                         R(polje);
                         ispis(polje);
                     }
 
                     else if (potez == 'U')
                     {
+                        cout << "\n";
                         U(polje);
                         ispis(polje);
                     }
 
                     else if (potez == 'B')
                     {
+                        cout << "\n";
                         B(polje);
                         ispis(polje);
                     }
 
                     else if (potez == 'L')
                     {
+                        cout << "\n";
                         L(polje);
                         ispis(polje);
                     }
 
                     else if (potez == 'D')
                     {
+                        cout << "\n";
                         D(polje);
                         ispis(polje);
                     }
@@ -815,22 +674,213 @@ label:
                         ispis(polje);
                     }
 
+                    else if (potez == 'p')
+                    {
+                        cout << "\n";
+                        random(polje);
+                        ispis(polje);
+                    }
+
+                    else if (potez == 's')
+                    {
+                        cout << "Ako ipak ne zelite spremiti kocku unesite broj 4." << endl;
+                        cout << "Koji save slot zelite zauzeti? ";
+                        int slot;
+                        while (1)
+                        {
+                            cin >> slot;
+                            if (slot == 1)
+                            {
+                                fstream save1("save1.bin", ios::binary | ios::out);
+                                save1.write(reinterpret_cast<char *>(polje), sizeof(polje));
+                                save1.close();
+                                break;
+                            }
+                            else if (slot == 2)
+                            {
+                                fstream save2("save2.bin", ios::binary | ios::out);
+                                save2.write(reinterpret_cast<char *>(polje), sizeof(polje));
+                                save2.close();
+                                break;
+                            }
+                            else if (slot == 3)
+                            {
+                                fstream save3("save3.bin", ios::binary | ios::out);
+                                save3.write(reinterpret_cast<char *>(polje), sizeof(polje));
+                                save3.close();
+                                break;
+                            }
+                            else if (slot == 4)
+                                break;
+                            else
+                                cout << "Slot koji ste unjeli ne postoji, pokusajte ponovno: ";
+                        }
+                    }
+
                     else if (potez == 'e')
                     {
-                        auto end = chrono::high_resolution_clock::now();
-                        auto duration = chrono::duration_cast<chrono::seconds>(end - start);
-                        cout << "Rjesavate kocku vec: " << duration.count() << " sekundi" << endl;
                         cout << "Izlaz iz programa.";
                         goto exit;
                     }
+
+                    else if (potez == 'M')
+                        goto meni;
+
                     else
                         cout << "\nPotez koji ste unjeli ne postoji, molim da unesete jedan od postojecih poteza." << endl;
                 }
             }
-        }
 
+            else if (izbor == 2)
+            {
+                string ime;
+                reset(polje);
+                random(polje);
+                cout << "\nVrijeme je zapocelo\n";
+                ispis(polje);
+                auto start = chrono::high_resolution_clock::now();
+                cout << "\n";
+                while (1)
+                {
+                    if (rijeseno(polje))
+                    {
+                        auto end = chrono::high_resolution_clock::now();
+                        auto duration = chrono::duration_cast<chrono::seconds>(end - start);
+                        cout << "Kocka je rijesena, bravo!\n";
+                        cout << "Rijesili ste kocku za: " << duration.count() << " sekundi" << endl;
+                        fstream hall_of_fame("hall_of_fame.txt", ios::app);
+                        cout << "Upisite svoje ime: ";
+                        cin >> ime;
+                        hall_of_fame << ime << " - " << duration.count() << " sekundi" << endl;
+                        hall_of_fame.close();
+                        cout << "Vase ime i vrijeme je pohranjeno u hall of fame-u" << endl;
+                        goto exit;
+                    }
+                    else
+                    {
+                        cin >> potez;
+                        if (potez == 'f')
+                        {
+                            cout << "\n";
+                            f(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'r')
+                        {
+                            cout << "\n";
+                            r(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'u')
+                        {
+                            cout << "\n";
+                            u(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'b')
+                        {
+                            cout << "\n";
+                            b(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'l')
+                        {
+                            cout << "\n";
+                            l(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'd')
+                        {
+                            cout << "\n";
+                            d(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'F')
+                        {
+                            cout << "\n";
+                            F(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'R')
+                        {
+                            cout << "\n";
+                            R(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'U')
+                        {
+                            cout << "\n";
+                            U(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'B')
+                        {
+                            cout << "\n";
+                            B(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'L')
+                        {
+                            cout << "\n";
+                            L(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'D')
+                        {
+                            cout << "\n";
+                            D(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'o')
+                        {
+                            cout << "\n";
+                            reset(polje);
+                            ispis(polje);
+                        }
+
+                        else if (potez == 'e')
+                        {
+                            auto end = chrono::high_resolution_clock::now();
+                            auto duration = chrono::duration_cast<chrono::seconds>(end - start);
+                            cout << "Rjesavate kocku vec: " << duration.count() << " sekundi" << endl;
+                            cout << "Izlaz iz programa.";
+                            goto exit;
+                        }
+                        else
+                            cout << "\nPotez koji ste unjeli ne postoji, molim da unesete jedan od postojecih poteza." << endl;
+                    }
+                }
+            }
+
+            else
+                cout << "Krivi unos, molimo pokusajte ponovno: ";
+        }
+    }
+    else
+    {
+        pok++;
+        if (pok >= 3)
+        {
+            cout << "\nPrevise netocnih pokusaja, pristup odbijen";
+            goto exit;
+        }
         else
-            cout << "Krivi unos, molimo pokusajte ponovno: ";
+        {
+            cout << "\nLozinka nije tocna, pokusajte ponovno: ";
+            goto start;
+        }
     }
 exit:
     return 0;
