@@ -792,6 +792,13 @@ label:
                         D(polje);
                         ispis(polje);
                     }
+                    
+                    else if (potez == 'o')
+                    {
+                        cout << "\n";
+                        reset(polje);
+                        ispis(polje);
+                    }
 
                     else if (potez == 'e')
                     {
