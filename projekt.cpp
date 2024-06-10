@@ -455,7 +455,7 @@ start:
                 while (1)
                 {
                 meni:
-                    cout << "\nMeni:\nUpisite 1 za pocetak sa slozenom kockom\nUpisite 2 za pocetak sa pomjesanom kockom\nUpisite 3 za ucitavanje save slot-a\nUpisite 4 za brisanje save slot-a\nUpisite 5 za odlazak nazad na pocetni odabir\nUpisite 6 ako zelite promjeniti lozinku\n";
+                    cout << "\nMeni:\nUpisite 1 za pocetak sa slozenom kockom\nUpisite 2 za pocetak sa pomjesanom kockom\nUpisite 3 za ucitavanje save slot-a\nUpisite 4 za brisanje save slot-a\nUpisite 5 za odlazak nazad na pocetni odabir\nUpisite 6 za mijenjanje lozinke\nUpisite 7 za hall of fame\n\n";
                     cin >> menu;
                     if (menu == 1)
                     {
@@ -574,6 +574,16 @@ start:
                         lozinka << prov;
                         lozinka.close();
                         cout << "\nLozinka je uspjesno promijejena\n";
+                    }
+
+                    else if (menu == 7)
+                    {
+                        string ispis;
+                        fstream hall_of_fame("hall_of_fame.txt", ios::in);
+                        getline(hall_of_fame, ispis);
+                        cout << "\nHall of fame:\n";
+                        cout << ispis << endl;
+                        hall_of_fame.close();
                     }
 
                     else
