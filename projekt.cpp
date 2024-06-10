@@ -446,7 +446,7 @@ start:
         char potez;
         int polje[9][12] = {0}, menu, izbor; // deklaracija polja
     label:
-        cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku, slovo 'e' kako bi izasli iz programa, slovo 'M' kako be se vratili na meni\n ili slovo 'p' kako bi preslozili kocku\n\nZelite li igrati normalno ili vremenski, za normalno upišite 1 a za vremenski 2" << endl;
+        cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku, slovo 'e' kako bi izasli iz programa,\nslovo 'M' kako be se vratili na meni, slovo 's' kako bi spremili kocku ili slovo 'p' kako bi preslozili kocku\n\nZelite li igrati normalno ili vremenski, za normalno upišite 1 a za vremenski 2" << endl;
         while (1)
         {
             cin >> izbor;
