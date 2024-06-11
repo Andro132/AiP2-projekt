@@ -611,11 +611,9 @@ start:
                         initialize_openssl();
                         lengthOfHash = 0;
                         hashaj(nov_loz, hash, lengthOfHash);
-                        cout << hash << endl;
                         ofstream lozinka("lozinka.txt");
                         for (unsigned int i = 0; i < lengthOfHash; i++)
                             sprintf(&prov[2 * i], "%02x", hash[i]);
-                        cout << prov;
                         lozinka << prov;
                         lozinka.close();
                         cout << "\nLozinka je uspjesno promijenjena\n";
