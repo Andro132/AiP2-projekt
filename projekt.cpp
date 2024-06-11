@@ -2,6 +2,7 @@
 #include <time.h>
 #include <fstream>
 #include <string>
+#include <string.h>
 #include <chrono>
 #include <iomanip>
 #include <openssl/evp.h>
@@ -444,31 +445,38 @@ void cleanup_openssl()
     ERR_free_strings();
 }
 
-int main()
+void hashaj(const char *data, unsigned char *hash, unsigned int &lengthOfHash)
 {
-    int pok = 0;
-start:
-    char loz[30];
-    cout << "\t2d rubikova\n\n";
-    cout << "Upisite lozinku: ";
-    cin >> loz;
-    const char *data = loz;
-    initialize_openssl();
     const EVP_MD *md = EVP_sha256();
     EVP_MD_CTX *mdctx = EVP_MD_CTX_new();
     EVP_DigestInit_ex(mdctx, md, nullptr);
     EVP_DigestUpdate(mdctx, data, strlen(data));
+    EVP_DigestFinal_ex(mdctx, hash, &lengthOfHash);
+    EVP_MD_CTX_free(mdctx);
+}
+
+int main()
+{
+    int pok = 0;
+    char loz[30];
+    cout << "\t2d rubikova\n\n";
+    cout << "Upisite lozinku: ";
+start:
+    cin >> loz;
+    initialize_openssl();
     unsigned char hash[EVP_MAX_MD_SIZE];
     unsigned int lengthOfHash = 0;
-    EVP_DigestFinal_ex(mdctx, hash, &lengthOfHash);
-    fstream lozinka;
-    lozinka.open("lozinka.txt");
-    const char *prov;
-    lozinka.read((char *)&prov, strlen(prov));
-    lozinka.close();
-    EVP_MD_CTX_free(mdctx);
+    hashaj(loz, hash, lengthOfHash);
+    char prov[2 * lengthOfHash + 1];
+    for (unsigned int i = 0; i < lengthOfHash; i++)
+        sprintf(&prov[2 * i], "%02x", hash[i]);
     cleanup_openssl();
-    if (prov == data)
+    ifstream lozinka("lozinka.txt");
+    char hash_loz[2 * lengthOfHash + 1];
+    lozinka.read(hash_loz, 2 * lengthOfHash);
+    hash_loz[2 * lengthOfHash] = '\0';
+    lozinka.close();
+    if (strcmp(hash_loz, prov) == 0)
     {
         cout << "\nLozinka je tocna, pristup odobren\n\n";
         char potez;
@@ -601,22 +609,16 @@ start:
                         cin >> nov_loz;
                         const char *data = loz;
                         initialize_openssl();
-                        const EVP_MD *md = EVP_sha256();
-                        EVP_MD_CTX *mdctx = EVP_MD_CTX_new();
-                        EVP_DigestInit_ex(mdctx, md, nullptr);
-                        EVP_DigestUpdate(mdctx, data, strlen(data));
-                        unsigned char hash[EVP_MAX_MD_SIZE];
-                        unsigned int lengthOfHash = 0;
-                        EVP_DigestFinal_ex(mdctx, hash, &lengthOfHash);
-                        fstream lozinka;
-                        lozinka.open("lozinka.txt");
-                        for (unsigned int i = 0; i < lengthOfHash; ++i)
-                        {
-                            lozinka << hex << setw(2) << setfill('0') << (int)hash[i];
-                        }
+                        lengthOfHash = 0;
+                        hashaj(nov_loz, hash, lengthOfHash);
+                        cout << hash << endl;
+                        ofstream lozinka("lozinka.txt");
+                        for (unsigned int i = 0; i < lengthOfHash; i++)
+                            sprintf(&prov[2 * i], "%02x", hash[i]);
+                        cout << prov;
+                        lozinka << prov;
                         lozinka.close();
-                        cout << "\n";
-                        EVP_MD_CTX_free(mdctx);
+                        cout << "\nLozinka je uspjesno promijenjena\n";
                         cleanup_openssl();
                     }
 
