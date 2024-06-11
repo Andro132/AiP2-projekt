@@ -486,6 +486,7 @@ start:
         while (1)
         {
             cin >> izbor;
+            cout << "\033[2J\033[1;1H";
             if (izbor == 1)
             {
                 while (1)
@@ -495,6 +496,7 @@ start:
                     cin >> menu;
                     if (menu == 1)
                     {
+                        cout << "\033[2J\033[1;1H";
                         reset(polje);
                         ispis(polje);
                         break;
@@ -502,6 +504,7 @@ start:
 
                     else if (menu == 2)
                     {
+                        cout << "\033[2J\033[1;1H";
                         reset(polje);
                         random(polje);
                         ispis(polje);
@@ -523,6 +526,7 @@ start:
                                 save1.close();
                                 if (polje[3][3] != 0)
                                 {
+                                    cout << "\033[2J\033[1;1H";
                                     ispis(polje);
                                     break;
                                 }
@@ -536,6 +540,7 @@ start:
                                 save2.close();
                                 if (polje[3][3] != 0)
                                 {
+                                    cout << "\033[2J\033[1;1H";
                                     ispis(polje);
                                     break;
                                 }
@@ -549,6 +554,7 @@ start:
                                 save3.close();
                                 if (polje[3][3] != 0)
                                 {
+                                    cout << "\033[2J\033[1;1H";
                                     ispis(polje);
                                     break;
                                 }
@@ -556,7 +562,10 @@ start:
                                     cout << "Taj save slot je prazan, unesite neki drugi: ";
                             }
                             else if (slot == 4)
+                            {
+                                cout << "\033[2J\033[1;1H";
                                 goto meni;
+                            }
                             else
                                 cout << "Slot koji ste unjeli ne postoji, pokusajte ponovno: ";
                         }
@@ -575,6 +584,7 @@ start:
                             {
                                 ofstream save1("save1.bin", ios::binary | ios::trunc);
                                 save1.close();
+                                cout << "\033[2J\033[1;1H";
                                 cout << "\nSlot je uspjesno izbrisan\n\n";
                                 break;
                             }
@@ -582,6 +592,7 @@ start:
                             {
                                 ofstream save2("save2.bin", ios::binary | ios::trunc);
                                 save2.close();
+                                cout << "\033[2J\033[1;1H";
                                 cout << "\nSlot je uspjesno izbrisan\n\n";
                                 break;
                             }
@@ -589,18 +600,25 @@ start:
                             {
                                 ofstream save3("save3.bin", ios::binary | ios::trunc);
                                 save3.close();
+                                cout << "\033[2J\033[1;1H";
                                 cout << "\nSlot je uspjesno izbrisan\n\n";
                                 break;
                             }
                             else if (slot == 4)
+                            {
+                                cout << "\033[2J\033[1;1H";
                                 goto meni;
+                            }
                             else
                                 cout << "Slot koji ste unjeli ne postoji, pokusajte ponovno: ";
                         }
                     }
 
                     else if (menu == 5)
+                    {
+                        cout << "\033[2J\033[1;1H";
                         goto label;
+                    }
 
                     else if (menu == 6)
                     {
@@ -616,12 +634,14 @@ start:
                             sprintf(&prov[2 * i], "%02x", hash[i]);
                         lozinka << prov;
                         lozinka.close();
+                        cout << "\033[2J\033[1;1H";
                         cout << "\nLozinka je uspjesno promijenjena\n";
                         cleanup_openssl();
                     }
 
                     else if (menu == 7)
                     {
+                        cout << "\033[2J\033[1;1H";
                         string ispis;
                         fstream hall_of_fame("hall_of_fame.txt", ios::in);
                         getline(hall_of_fame, ispis);
@@ -639,6 +659,7 @@ start:
                     cin >> potez;
                     if (potez == 'f')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         f(polje);
                         ispis(polje);
@@ -646,6 +667,7 @@ start:
 
                     else if (potez == 'r')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         r(polje);
                         ispis(polje);
@@ -653,6 +675,7 @@ start:
 
                     else if (potez == 'u')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         u(polje);
                         ispis(polje);
@@ -660,6 +683,7 @@ start:
 
                     else if (potez == 'b')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         b(polje);
                         ispis(polje);
@@ -667,6 +691,7 @@ start:
 
                     else if (potez == 'l')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         l(polje);
                         ispis(polje);
@@ -674,6 +699,7 @@ start:
 
                     else if (potez == 'd')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         d(polje);
                         ispis(polje);
@@ -681,6 +707,7 @@ start:
 
                     else if (potez == 'F')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         F(polje);
                         ispis(polje);
@@ -688,6 +715,7 @@ start:
 
                     else if (potez == 'R')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         R(polje);
                         ispis(polje);
@@ -695,6 +723,7 @@ start:
 
                     else if (potez == 'U')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         U(polje);
                         ispis(polje);
@@ -702,6 +731,7 @@ start:
 
                     else if (potez == 'B')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         B(polje);
                         ispis(polje);
@@ -709,6 +739,7 @@ start:
 
                     else if (potez == 'L')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         L(polje);
                         ispis(polje);
@@ -716,6 +747,7 @@ start:
 
                     else if (potez == 'D')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         D(polje);
                         ispis(polje);
@@ -723,6 +755,7 @@ start:
 
                     else if (potez == 'o')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         reset(polje);
                         ispis(polje);
@@ -730,6 +763,7 @@ start:
 
                     else if (potez == 'p')
                     {
+                        cout << "\033[2J\033[1;1H";
                         cout << "\n";
                         random(polje);
                         ispis(polje);
@@ -778,7 +812,10 @@ start:
                     }
 
                     else if (potez == 'M')
+                    {
+                        cout << "\033[2J\033[1;1H";
                         goto meni;
+                    }
 
                     else
                         cout << "\nPotez koji ste unjeli ne postoji, molim da unesete jedan od postojecih poteza." << endl;
@@ -815,6 +852,7 @@ start:
                         cin >> potez;
                         if (potez == 'f')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             f(polje);
                             ispis(polje);
@@ -822,6 +860,7 @@ start:
 
                         else if (potez == 'r')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             r(polje);
                             ispis(polje);
@@ -829,6 +868,7 @@ start:
 
                         else if (potez == 'u')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             u(polje);
                             ispis(polje);
@@ -836,6 +876,7 @@ start:
 
                         else if (potez == 'b')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             b(polje);
                             ispis(polje);
@@ -843,6 +884,7 @@ start:
 
                         else if (potez == 'l')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             l(polje);
                             ispis(polje);
@@ -850,6 +892,7 @@ start:
 
                         else if (potez == 'd')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             d(polje);
                             ispis(polje);
@@ -857,6 +900,7 @@ start:
 
                         else if (potez == 'F')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             F(polje);
                             ispis(polje);
@@ -864,6 +908,7 @@ start:
 
                         else if (potez == 'R')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             R(polje);
                             ispis(polje);
@@ -871,6 +916,7 @@ start:
 
                         else if (potez == 'U')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             U(polje);
                             ispis(polje);
@@ -878,6 +924,7 @@ start:
 
                         else if (potez == 'B')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             B(polje);
                             ispis(polje);
@@ -885,6 +932,7 @@ start:
 
                         else if (potez == 'L')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             L(polje);
                             ispis(polje);
@@ -892,6 +940,7 @@ start:
 
                         else if (potez == 'D')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             D(polje);
                             ispis(polje);
@@ -899,6 +948,7 @@ start:
 
                         else if (potez == 'o')
                         {
+                            cout << "\033[2J\033[1;1H";
                             cout << "\n";
                             reset(polje);
                             ispis(polje);
