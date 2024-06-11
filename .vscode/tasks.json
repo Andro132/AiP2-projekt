@@ -9,10 +9,15 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-L",
+                "-IC:/OpenSSL-Win64/include",
+                "-LC:/OpenSSL-Win64/lib",
+                "-lssl",
+                "-lcrypto"
             ],
             "options": {
-                "cwd": "C:\\msys64\\ucrt64\\bin"
+                "cwd": "${fileDirname}"
             },
             "problemMatcher": [
                 "$gcc"

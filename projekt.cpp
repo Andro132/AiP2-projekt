@@ -3,6 +3,10 @@
 #include <fstream>
 #include <string>
 #include <chrono>
+#include <iomanip>
+#include <openssl/evp.h>
+#include <openssl/err.h>
+#include <openssl/ssl.h>
 using namespace std;
 
 void ispis(int polje[][12])
@@ -428,19 +432,43 @@ void reset(int polje[][12])
     }
 }
 
+void initialize_openssl()
+{
+    SSL_load_error_strings();
+    OpenSSL_add_ssl_algorithms();
+}
+
+void cleanup_openssl()
+{
+    EVP_cleanup();
+    ERR_free_strings();
+}
+
 int main()
 {
     int pok = 0;
-    string loz, prov;
-    fstream lozinka;
-    lozinka.open("lozinka.txt");
-    lozinka >> prov;
-    lozinka.close();
+start:
+    char loz[30];
     cout << "\t2d rubikova\n\n";
     cout << "Upisite lozinku: ";
-start:
     cin >> loz;
-    if (loz == prov)
+    const char *data = loz;
+    initialize_openssl();
+    const EVP_MD *md = EVP_sha256();
+    EVP_MD_CTX *mdctx = EVP_MD_CTX_new();
+    EVP_DigestInit_ex(mdctx, md, nullptr);
+    EVP_DigestUpdate(mdctx, data, strlen(data));
+    unsigned char hash[EVP_MAX_MD_SIZE];
+    unsigned int lengthOfHash = 0;
+    EVP_DigestFinal_ex(mdctx, hash, &lengthOfHash);
+    fstream lozinka;
+    lozinka.open("lozinka.txt");
+    const char *prov;
+    lozinka.read((char *)&prov, strlen(prov));
+    lozinka.close();
+    EVP_MD_CTX_free(mdctx);
+    cleanup_openssl();
+    if (prov == data)
     {
         cout << "\nLozinka je tocna, pristup odobren\n\n";
         char potez;
@@ -568,12 +596,28 @@ start:
 
                     else if (menu == 6)
                     {
-                        cout << "Unesite novu lozinku: ";
-                        cin >> prov;
+                        char nov_loz[30];
+                        cout << "Upisite novu lozinku: ";
+                        cin >> nov_loz;
+                        const char *data = loz;
+                        initialize_openssl();
+                        const EVP_MD *md = EVP_sha256();
+                        EVP_MD_CTX *mdctx = EVP_MD_CTX_new();
+                        EVP_DigestInit_ex(mdctx, md, nullptr);
+                        EVP_DigestUpdate(mdctx, data, strlen(data));
+                        unsigned char hash[EVP_MAX_MD_SIZE];
+                        unsigned int lengthOfHash = 0;
+                        EVP_DigestFinal_ex(mdctx, hash, &lengthOfHash);
+                        fstream lozinka;
                         lozinka.open("lozinka.txt");
-                        lozinka << prov;
+                        for (unsigned int i = 0; i < lengthOfHash; ++i)
+                        {
+                            lozinka << hex << setw(2) << setfill('0') << (int)hash[i];
+                        }
                         lozinka.close();
-                        cout << "\nLozinka je uspjesno promijejena\n";
+                        cout << "\n";
+                        EVP_MD_CTX_free(mdctx);
+                        cleanup_openssl();
                     }
 
                     else if (menu == 7)
