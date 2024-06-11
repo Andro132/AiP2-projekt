@@ -2,7 +2,12 @@
 #include <time.h>
 #include <fstream>
 #include <string>
+#include <string.h>
 #include <chrono>
+#include <iomanip>
+#include <openssl/evp.h>
+#include <openssl/err.h>
+#include <openssl/ssl.h>
 using namespace std;
 
 void ispis(int polje[][12])
@@ -428,25 +433,56 @@ void reset(int polje[][12])
     }
 }
 
+void initialize_openssl()
+{
+    SSL_load_error_strings();
+    OpenSSL_add_ssl_algorithms();
+}
+
+void cleanup_openssl()
+{
+    EVP_cleanup();
+    ERR_free_strings();
+}
+
+void hashaj(const char *data, unsigned char *hash, unsigned int &lengthOfHash)
+{
+    const EVP_MD *md = EVP_sha256();
+    EVP_MD_CTX *mdctx = EVP_MD_CTX_new();
+    EVP_DigestInit_ex(mdctx, md, nullptr);
+    EVP_DigestUpdate(mdctx, data, strlen(data));
+    EVP_DigestFinal_ex(mdctx, hash, &lengthOfHash);
+    EVP_MD_CTX_free(mdctx);
+}
+
 int main()
 {
     int pok = 0;
-    string loz, prov;
-    fstream lozinka;
-    lozinka.open("lozinka.txt");
-    lozinka >> prov;
-    lozinka.close();
+    char loz[30];
     cout << "\t2d rubikova\n\n";
     cout << "Upisite lozinku: ";
 start:
     cin >> loz;
-    if (loz == prov)
+    initialize_openssl();
+    unsigned char hash[EVP_MAX_MD_SIZE];
+    unsigned int lengthOfHash = 0;
+    hashaj(loz, hash, lengthOfHash);
+    char prov[2 * lengthOfHash + 1];
+    for (unsigned int i = 0; i < lengthOfHash; i++)
+        sprintf(&prov[2 * i], "%02x", hash[i]);
+    cleanup_openssl();
+    ifstream lozinka("lozinka.txt");
+    char hash_loz[2 * lengthOfHash + 1];
+    lozinka.read(hash_loz, 2 * lengthOfHash);
+    hash_loz[2 * lengthOfHash] = '\0';
+    lozinka.close();
+    if (strcmp(hash_loz, prov) == 0)
     {
         cout << "\nLozinka je tocna, pristup odobren\n\n";
         char potez;
         int polje[9][12] = {0}, menu, izbor; // deklaracija polja
     label:
-        cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku, slovo 'e' kako bi izasli iz programa, slovo 'M' kako be se vratili na meni\n ili slovo 'p' kako bi preslozili kocku\n\nZelite li igrati normalno ili vremenski, za normalno upišite 1 a za vremenski 2" << endl;
+        cout << "Upute:\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n\nNapomena: ako upisete malu verziju slova, \nvelika verzija ce napraviti isti potez samo u drugom smijeru\n\nNapomena 2: u bilo kojem trenutku možete upisati slovo 'o' kako bi obnovili kocku, slovo 'e' kako bi izasli iz programa,\nslovo 'M' kako be se vratili na meni, slovo 's' kako bi spremili kocku ili slovo 'p' kako bi preslozili kocku\n\nZelite li igrati normalno ili vremenski, za normalno upišite 1 a za vremenski 2" << endl;
         while (1)
         {
             cin >> izbor;
@@ -455,7 +491,7 @@ start:
                 while (1)
                 {
                 meni:
-                    cout << "\nMeni:\nUpisite 1 za pocetak sa slozenom kockom\nUpisite 2 za pocetak sa pomjesanom kockom\nUpisite 3 za ucitavanje save slot-a\nUpisite 4 za brisanje save slot-a\nUpisite 5 za odlazak nazad na pocetni odabir\nUpisite 6 ako zelite promjeniti lozinku\n";
+                    cout << "\nMeni:\nUpisite 1 za pocetak sa slozenom kockom\nUpisite 2 za pocetak sa pomjesanom kockom\nUpisite 3 za ucitavanje save slot-a\nUpisite 4 za brisanje save slot-a\nUpisite 5 za odlazak nazad na pocetni odabir\nUpisite 6 za mijenjanje lozinke\nUpisite 7 za hall of fame\n\n";
                     cin >> menu;
                     if (menu == 1)
                     {
@@ -568,12 +604,32 @@ start:
 
                     else if (menu == 6)
                     {
-                        cout << "Unesite novu lozinku: ";
-                        cin >> prov;
-                        lozinka.open("lozinka.txt");
+                        char nov_loz[30];
+                        cout << "Upisite novu lozinku: ";
+                        cin >> nov_loz;
+                        const char *data = loz;
+                        initialize_openssl();
+                        lengthOfHash = 0;
+                        hashaj(nov_loz, hash, lengthOfHash);
+                        cout << hash << endl;
+                        ofstream lozinka("lozinka.txt");
+                        for (unsigned int i = 0; i < lengthOfHash; i++)
+                            sprintf(&prov[2 * i], "%02x", hash[i]);
+                        cout << prov;
                         lozinka << prov;
                         lozinka.close();
-                        cout << "\nLozinka je uspjesno promijejena\n";
+                        cout << "\nLozinka je uspjesno promijenjena\n";
+                        cleanup_openssl();
+                    }
+
+                    else if (menu == 7)
+                    {
+                        string ispis;
+                        fstream hall_of_fame("hall_of_fame.txt", ios::in);
+                        getline(hall_of_fame, ispis);
+                        cout << "\nHall of fame:\n";
+                        cout << ispis << endl;
+                        hall_of_fame.close();
                     }
 
                     else

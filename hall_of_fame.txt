@@ -1,6 +1,1 @@
-noni - 2 sekundi
-Andrija - 8 sekundi
-Toni - 6 sekundi
-Ivica - 28 sekundi
-Boban - 5 sekundi
-Kuhar - 15 sekundi
+Toni - 8 sekundi
