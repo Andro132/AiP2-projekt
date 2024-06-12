@@ -656,6 +656,7 @@ start:
 
                 while (1)
                 {
+                    cout << "\nUpisite jedno od ovih slova: f, r, u, b, l, d\nNavedena slova mogu biti upisana sa ili bez caps lock-a\n";
                     cin >> potez;
                     if (potez == 'f')
                     {
