@@ -459,7 +459,11 @@ int main()
 {
     int pok = 0;
     char loz[30];
-    cout << "\t2d rubikova\n\n";
+    cout << "\n222222   DDDDD    RRRRRR  UU   UU BBBBBB  II KK  KK  OOOOO  VV     VV    AAAAA\n";
+    cout << "   22    DD  DD   RR   RR UU   UU BB   BB II KK /    OO   OO VV     VV   AA   AA\n";
+    cout << "  22     DD   DD  RRRRRR  UU   UU BBBBBB  II KKK     OO   OO VV     VV  AAAAAAAAA\n";
+    cout << " 22      DD  DD   RR  RR  UU   UU BB   BB II KK \\    OO   OO  VV   VV  AA       AA\n";
+    cout << "222222   DDDDD    RR   RR  UUUUUU  BBBBBB  II KK  KK  OOOOO    VVVVV  AA         AA\n\n";
     cout << "Upisite lozinku: ";
 start:
     cin >> loz;
